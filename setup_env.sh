@@ -27,10 +27,27 @@ apt-get update -qq > /dev/null
 debconf-set-selections <<< "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true"
 debconf-set-selections <<< "oracle-java8-installer shared/accepted-oracle-license-v1-1 seen true"
 echo "Install JDK8"
-apt-get install -y -q oracle-java8-installer
+apt-get install -y -q oracle-java8-installer > /dev/null
+update-java-alternatives -s java-8-oracle
 
 # install Tomcat
-echo "Preparing Tomcat"
+echo "Setup Tomcat user"
+groupadd tomcat
+useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat
+echo "Install Tomcat"
+cd ~
+wget http://apache.mirrors.ionfish.org/tomcat/tomcat-9/v9.0.0.M20/bin/apache-tomcat-9.0.0.M20.tar.gz > /dev/null
+mkdir /opt/tomcat
+tar xvf apache-tomcat-9*tar.gz -C /opt/tomcat --strip-components=1 > /dev/null
+echo "Update Permission"
+cd /opt/tomcat
+chgrp -R tomcat conf
+chmod g+rwx conf
+chmod g+r conf/*
+chown -R tomcat work/ temp/ logs/
+scp /vagrant/tomcat.conf /etc/init/
+initctl reload-configuration
+#initctl start tomcat
 
 
 # install git
