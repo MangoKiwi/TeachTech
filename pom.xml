@@ -6,7 +6,7 @@
 	<groupId>com.MangoKiwi</groupId>
 	<artifactId>teachtech</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>TeachTech</name>
 	<description>TeachTech backend</description>
