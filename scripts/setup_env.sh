@@ -30,21 +30,34 @@ echo "Install JDK8"
 apt-get install -y -q oracle-java8-installer > /dev/null
 update-java-alternatives -s java-8-oracle
 
+# install Maven
+echo "Install Maven"
+apt-get install maven -y > /dev/null
+
+#======================================================
 # install Tomcat
-echo "Setup Tomcat user"
-groupadd tomcat
-useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat
+#echo "Setup Tomcat user"
+#groupadd tomcat
+#useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat
+#======================================================
+
 echo "Install Tomcat"
 cd ~
 wget http://apache.mirrors.ionfish.org/tomcat/tomcat-9/v9.0.0.M20/bin/apache-tomcat-9.0.0.M20.tar.gz > /dev/null
 mkdir /opt/tomcat
 tar xvf apache-tomcat-9*tar.gz -C /opt/tomcat --strip-components=1 > /dev/null
 echo "Update Permission"
+cd /opt
+chmod -R 777 tomcat
 cd /opt/tomcat
-chgrp -R tomcat conf
-chmod g+rwx conf
-chmod g+r conf/*
-chown -R tomcat work/ temp/ logs/
+
+#======================================================
+#chgrp -R tomcat conf
+#chmod g+rwx conf
+#chmod g+r conf/*
+#chown -R tomcat work/ temp/ logs/
+#======================================================
+
 scp /vagrant/tomcat.conf /etc/init/
 sed -i "s#</tomcat-users>#  <!-- user manager can access only manager section -->\n  <role rolename=\"manager-gui\" />\n  <!-- user admin can access manager and admin section both -->\n  <role rolename=\"admin-gui\" />\n  <user username=\"admin\" password=\"password\" roles=\"manager-gui,admin-gui\" />\n</tomcat-users>#" /opt/tomcat/conf/tomcat-users.xml
 sed -i "s#<Context antiResourceLocking=\"false\" privileged=\"true\" >#<Context antiResourceLocking=\"false\" privileged=\"true\" >\n  <!--#" /opt/tomcat/webapps/manager/META-INF/context.xml
