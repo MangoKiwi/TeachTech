@@ -42,10 +42,6 @@
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 			<scope>provided</scope>
 		</dependency>
-<<<<<<< HEAD
-=======
-
->>>>>>> a374ae6dcb92b5fe1e1ddb5740da0596f37a90bd
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
