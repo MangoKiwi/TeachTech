@@ -14,6 +14,7 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 
+
 import javax.sql.DataSource;
 import java.util.Properties;
 
@@ -28,6 +29,19 @@ public class DataConfig {
 
     @Autowired
     private Environment environment;
+
+    @Bean
+    @DependsOn("flyway")
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(){
+        LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
+        HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+        factory.setDataSource(dataSource());
+        factory.setJpaVendorAdapter(vendorAdapter);
+        factory.setPackagesToScan(environment.getProperty("ModelPackage"));
+        factory.setJpaProperties(getHibernateProperties());
+        return factory;
+    }
+
 
     @Bean
     public DataSource dataSource(){
@@ -48,23 +62,10 @@ public class DataConfig {
         return flyway;
     }
 
-    @Bean
-    @DependsOn("flyway")
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory(){
-        LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
-        HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-        factory.setDataSource(dataSource());
-        factory.setJpaVendorAdapter(vendorAdapter);
-        factory.setPackagesToScan(environment.getProperty("ModelPackage"));
-        factory.setJpaProperties(getHibernateProperties());
-
-        return factory;
-    }
-
     private Properties getHibernateProperties(){
         Properties properties = new Properties();
         properties.put("hibernate.dialect", environment.getProperty("hibernate.dialect"));
-        properties.put("hibernate.hibernate.implicit_naming_strategy", environment.getProperty("hibernate.hibernate.implicit_naming_strategy"));
+        properties.put("hibernate.implicit_naming_strategy", environment.getProperty("hibernate.implicit_naming_strategy"));
         properties.put("hibernate.hbm2ddl.auto", environment.getProperty("hibernate.hbm2ddl.auto"));
         return properties;
     }
