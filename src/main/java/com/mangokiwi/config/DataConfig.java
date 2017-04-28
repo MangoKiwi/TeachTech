@@ -2,7 +2,7 @@ package com.mangokiwi.config;
 
 
 import org.apache.commons.dbcp2.BasicDataSource;
-import org.flywaydb.core.Flyway;
+//import org.flywaydb.core.Flyway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,7 +31,7 @@ public class DataConfig {
     private Environment environment;
 
     @Bean
-    @DependsOn("flyway")
+//    @DependsOn("flyway")
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(){
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
@@ -53,14 +53,14 @@ public class DataConfig {
         return dataSource;
     }
 
-    @Bean(initMethod = "migrate")
-    public Flyway flyway(){
-        Flyway flyway = new Flyway();
-        flyway.setBaselineOnMigrate(true);
-        flyway.setLocations("resources/migrations/");
-        flyway.setDataSource(dataSource());
-        return flyway;
-    }
+//    @Bean(initMethod = "migrate")
+//    public Flyway flyway(){
+//        Flyway flyway = new Flyway();
+//        flyway.setBaselineOnMigrate(true);
+//        flyway.setLocations("resources/migrations/");
+//        flyway.setDataSource(dataSource());
+//        return flyway;
+//    }
 
 
     private Properties getHibernateProperties(){
