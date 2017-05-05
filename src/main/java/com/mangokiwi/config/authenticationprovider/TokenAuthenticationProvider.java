@@ -56,7 +56,7 @@ public class TokenAuthenticationProvider implements AuthenticationProvider {
                 token.setAccessToken(tokenVal.get());
                 token.setExpireAt(info.getExpiresAt());
                 token.setIssueAt(info.getIssuedAt());
-                tokenService.updateById(token.getId(), token);
+                tokenService.update(token);
             }catch (EntityNotFoundException anotherEntityNotFoundException){
                 DefaultFacebookClient userFaceBookClient = new DefaultFacebookClient(tokenVal.get(), Version.LATEST);
                 com.restfb.types.User fbUser = userFaceBookClient.fetchObject("me", com.restfb.types.User.class);

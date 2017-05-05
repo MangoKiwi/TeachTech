@@ -5,6 +5,8 @@ import com.mangokiwi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
+
 /**
  * Created by zhenfeng on 4/27/17.
  */
@@ -16,22 +18,32 @@ public class UserService  {
     private UserRepository userRepository;
 
     public User findByUserName(String name){
-        return userRepository.findByUsername(name);
+        User result = userRepository.findByUsername(name);
+        if(result == null)
+            throw new EntityNotFoundException(" user can not be found");
+        return result;
     }
 
-    public User findById(Long id){return userRepository.findById(id);}
-
-
-    public User updateById(Long id, User user){
-        return null;
+    public User findById(Long id){
+        User result = userRepository.findById(id);
+        if(result == null)
+            throw new EntityNotFoundException(" user can not be found");
+        return result;
     }
 
+
+    // when using update , user's id must not be null and exist in database
+    public User update(User user){
+        return userRepository.save(user);
+    }
+
+    // when using add , user's id should be null and new one will be created
     public User add(User user){
-        return null;
+        return userRepository.save(user);
     }
 
-    public User deleteById(Long id){
-        return null;
+    public void deleteById(Long id){
+        userRepository.deleteById(id);
     }
 
 

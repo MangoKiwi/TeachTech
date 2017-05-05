@@ -24,6 +24,7 @@ public class Token {
 
     private Date expireAt;
 
+    public Token(){}
 
     public Token(String accessToken, User user, Date issueAt, Date expireAt) {
         this.accessToken = accessToken;

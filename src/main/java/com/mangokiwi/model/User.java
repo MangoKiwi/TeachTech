@@ -10,8 +10,9 @@ public class User {
     private Long id;
 
     @Column(unique = true)
-    @Size(min = 8, max = 20)
     private String username;
+
+    public User(){}
 
     public User(Long id, String username) {
         this.id = id;
