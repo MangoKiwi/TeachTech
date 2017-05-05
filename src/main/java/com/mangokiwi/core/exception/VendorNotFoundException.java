@@ -1,4 +1,4 @@
-package com.mangokiwi.config.authenticationprovider;
+package com.mangokiwi.core.exception;
 
 import org.springframework.security.core.AuthenticationException;
 
