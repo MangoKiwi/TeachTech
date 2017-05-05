@@ -56,7 +56,7 @@ public class TokenService {
 
 
     public boolean checkTokenExpired(Token token){
-        return token.getExpireAt().after(new Date(System.currentTimeMillis()));
+        return token.getExpireAt().before(new Date(System.currentTimeMillis()));
     }
 
 

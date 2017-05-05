@@ -60,12 +60,13 @@ public class TokenAuthenticationProvider implements AuthenticationProvider {
             }catch (EntityNotFoundException anotherEntityNotFoundException){
                 DefaultFacebookClient userFaceBookClient = new DefaultFacebookClient(tokenVal.get(), Version.LATEST);
                 com.restfb.types.User fbUser = userFaceBookClient.fetchObject("me", com.restfb.types.User.class);
-                com.mangokiwi.model.User user = new User(Long.parseLong(info.getUserId()), fbUser.getFirstName()+" "+fbUser.getLastName());
-                token = new Token(tokenVal.get(), user, info.getExpiresAt(),info.getIssuedAt());
+                com.mangokiwi.model.User user = new User(Long.parseLong(info.getUserId()), fbUser.getName());
+                token = new Token(tokenVal.get(), user,info.getIssuedAt(),info.getExpiresAt());
                 userService.add(user);
                 tokenService.add(token);
             }
         }
+        authentication.setAuthenticated(true);
         return authentication;
     }
 
