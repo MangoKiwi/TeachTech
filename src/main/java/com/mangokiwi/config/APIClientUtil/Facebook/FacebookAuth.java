@@ -1,4 +1,4 @@
-package com.mangokiwi.config.authenticationprovider;
+package com.mangokiwi.config.APIClientUtil.Facebook;
 
 import com.mangokiwi.model.Token;
 import com.mangokiwi.model.User;

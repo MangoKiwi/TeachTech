@@ -1,12 +1,9 @@
 package com.mangokiwi.config.authenticationprovider;
 
+import com.mangokiwi.config.APIClientUtil.Facebook.FacebookAuth;
+import com.mangokiwi.core.exception.VendorNotFoundException;
 import com.mangokiwi.model.Token;
-import com.mangokiwi.model.User;
 import com.mangokiwi.service.TokenService;
-import com.mangokiwi.service.UserService;
-import com.restfb.DefaultFacebookClient;
-import com.restfb.FacebookClient;
-import com.restfb.Version;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
