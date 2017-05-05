@@ -3,9 +3,6 @@ package com.mangokiwi.service;
 import com.mangokiwi.model.User;
 import com.mangokiwi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,27 +10,29 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-public class UserService implements UserDetailsService {
-
-
-    public UserRepository userRepository;
+public class UserService  {
 
     @Autowired
-    public void SetUserRepository( UserRepository userRepository){
-        this.userRepository = userRepository;
-    }
+    private UserRepository userRepository;
 
     public User findByUserName(String name){
         return userRepository.findByUsername(name);
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(name);
-        if(user == null){
-            throw new UsernameNotFoundException("User not found with name "+ name);
-        }
-        return user;
+    public User findById(Long id){return userRepository.findById(id);}
+
+
+    public User updateById(Long id, User user){
+        return null;
     }
+
+    public User add(User user){
+        return null;
+    }
+
+    public User deleteById(Long id){
+        return null;
+    }
+
 
 }

@@ -59,7 +59,7 @@ cd /opt/tomcat
 #======================================================
 
 scp /vagrant/tomcat.conf /etc/init/
-sed -i "s#</tomcat-users>#  <!-- user manager can access only manager section -->\n  <role rolename=\"manager-gui\" />\n  <!-- user admin can access manager and admin section both -->\n  <role rolename=\"admin-gui\" />\n  <user username=\"admin\" password=\"password\" roles=\"manager-gui,admin-gui\" />\n</tomcat-users>#" /opt/tomcat/conf/tomcat-users.xml
+sed -i "s#</tomcat-users>#  <!-- user manager can access only manager section -->\n  <roles rolename=\"manager-gui\" />\n  <!-- user admin can access manager and admin section both -->\n  <roles rolename=\"admin-gui\" />\n  <user username=\"admin\" password=\"password\" roles=\"manager-gui,admin-gui\" />\n</tomcat-users>#" /opt/tomcat/conf/tomcat-users.xml
 sed -i "s#<Context antiResourceLocking=\"false\" privileged=\"true\" >#<Context antiResourceLocking=\"false\" privileged=\"true\" >\n  <!--#" /opt/tomcat/webapps/manager/META-INF/context.xml
 sed -i "s#</Context>#  -->\n</Context>#" /opt/tomcat/webapps/manager/META-INF/context.xml
 initctl reload-configuration
