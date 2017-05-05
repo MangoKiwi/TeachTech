@@ -15,6 +15,8 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -34,10 +36,11 @@ public class AuthenticationFilter extends GenericFilterBean {
         HttpServletResponse httpResponse = asHttp(servletResponse);
 
         Optional<String> token = Optional.ofNullable(httpRequest.getHeader("Auth-Token"));
+        Optional<String> oAuthVendor = Optional.ofNullable(httpRequest.getHeader("Auth-Vendor"));
 
         try {
-            if (token.isPresent()) {
-                processTokenAuthentication(token);
+            if (token.isPresent() && oAuthVendor.isPresent()) {
+                processTokenAuthentication(packageToken(token, oAuthVendor));
             }
             filterChain.doFilter(servletRequest, servletResponse);
         } catch (InternalAuthenticationServiceException internalAuthenticationServiceException) {
@@ -57,13 +60,20 @@ public class AuthenticationFilter extends GenericFilterBean {
         return (HttpServletResponse) response;
     }
 
-    private void processTokenAuthentication(Optional<String> token) {
-        Authentication resultOfAuthentication = tryToAuthenticateWithToken(token);
+    private Map<String, Optional<String>> packageToken(Optional<String> token, Optional<String> vendor) {
+    	Map<String, Optional<String>> tokenPackage = new HashMap<>();
+    	tokenPackage.put("Auth-Token", token);
+    	tokenPackage.put("Auth-Vendor", vendor);
+    	return tokenPackage;
+	}
+
+    private void processTokenAuthentication(Map<String, Optional<String>> tokenPackage) {
+        Authentication resultOfAuthentication = tryToAuthenticateWithToken(tokenPackage);
         SecurityContextHolder.getContext().setAuthentication(resultOfAuthentication);
     }
 
-    private Authentication tryToAuthenticateWithToken(Optional<String> token) {
-        PreAuthenticatedAuthenticationToken requestAuthentication = new PreAuthenticatedAuthenticationToken(token, null);
+    private Authentication tryToAuthenticateWithToken(Map<String, Optional<String>> tokenPackage) {
+        PreAuthenticatedAuthenticationToken requestAuthentication = new PreAuthenticatedAuthenticationToken(tokenPackage, null );
         return tryToAuthenticate(requestAuthentication);
     }
 

@@ -16,6 +16,7 @@ import org.springframework.security.web.authentication.preauth.PreAuthenticatedA
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -28,49 +29,35 @@ public class TokenAuthenticationProvider implements AuthenticationProvider {
     private TokenService tokenService;
 
     @Autowired
-    private UserService userService;
-
-    @Autowired
-    private DefaultFacebookClient facebookClient;
+    private FacebookAuth facebookAuth;
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        Optional<String> tokenVal = (Optional<String>) authentication.getPrincipal();
-        if (!tokenVal.isPresent() || tokenVal.get().isEmpty()) {
+        Map<String, Optional<String>> tokenPackage = (Map<String, Optional<String>>) authentication.getPrincipal();
+        Optional<String> tokenVal = tokenPackage.get("Auth-Token");
+        Optional<String> vendorVal = tokenPackage.get("Auth-Vendor");
+        if (!tokenVal.isPresent() || tokenVal.get().isEmpty() || !vendorVal.isPresent() || vendorVal.get().isEmpty()) {
             throw new BadCredentialsException("Token Required");
         }
         Token token = null;
         try {
-            token = tokenService.findByAccessToken(tokenVal.get());
+            token = tokenService.findByAccessTokenAndVendor(tokenVal.get(), vendorVal.get());
             if(tokenService.checkTokenExpired(token)){
                 throw new  BadCredentialsException("Token expired");
             }
-        }catch (EntityNotFoundException entityNotFoundException){
+        } catch (EntityNotFoundException entityNotFoundException){
             // should use face link here
-            FacebookClient.DebugTokenInfo info = facebookClient.debugToken(tokenVal.get());
-            if(!info.isValid())
-                throw new BadCredentialsException("Invalid token");
-            try {
-                User user = userService.findById(Long.parseLong(info.getUserId()));
-                token = tokenService.findByUserId(user.getId());
-                token.setAccessToken(tokenVal.get());
-                token.setExpireAt(info.getExpiresAt());
-                token.setIssueAt(info.getIssuedAt());
-                tokenService.update(token);
-            }catch (EntityNotFoundException anotherEntityNotFoundException){
-                DefaultFacebookClient userFaceBookClient = new DefaultFacebookClient(tokenVal.get(), Version.LATEST);
-                com.restfb.types.User fbUser = userFaceBookClient.fetchObject("me", com.restfb.types.User.class);
-                com.mangokiwi.model.User user = new User(Long.parseLong(info.getUserId()), fbUser.getName());
-                token = new Token(tokenVal.get(), user,info.getIssuedAt(),info.getExpiresAt());
-                userService.add(user);
-                tokenService.add(token);
+            switch (vendorVal.get()) {
+                case "facebook":
+                    facebookAuth.retrieveUserDataAndUpdateUserInfo(tokenVal.get(), token);
+                    break;
+                default:
+                    throw new VendorNotFoundException("Unknown vendor");
             }
         }
         authentication.setAuthenticated(true);
         return authentication;
     }
-
-
 
     @Override
     public boolean supports(Class<?> authentication) {

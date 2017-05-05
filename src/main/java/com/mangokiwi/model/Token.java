@@ -24,10 +24,13 @@ public class Token {
 
     private Date expireAt;
 
+    private String vendor;
+
     public Token(){}
 
-    public Token(String accessToken, User user, Date issueAt, Date expireAt) {
+    public Token(String accessToken, String vendor, User user, Date issueAt, Date expireAt) {
         this.accessToken = accessToken;
+        this.vendor = vendor;
         this.user = user;
         this.issueAt = issueAt;
         this.expireAt = expireAt;
@@ -72,4 +75,8 @@ public class Token {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public String getVendor() { return vendor; }
+
+    public void setVendor(String vendor) { this.vendor = vendor; }
 }

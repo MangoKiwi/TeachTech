@@ -18,8 +18,8 @@ public class TokenService {
     @Autowired
     private TokenRepository tokenRepository;
 
-    public Token findByAccessToken(String accessToken){
-        Token token = tokenRepository.findByAccessToken(accessToken);
+    public Token findByAccessTokenAndVendor(String accessToken, String vendor){
+        Token token = tokenRepository.findByAccessTokenAndVendor(accessToken, vendor);
         if(token == null)
             throw new EntityNotFoundException(" Token can not be found");
         return token;
