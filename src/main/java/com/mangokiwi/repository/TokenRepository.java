@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 /**
  * Created by zhenfeng on 5/3/17.
  */
-public interface TokenRepository extends CrudRepository<Token, String>{
+public interface TokenRepository extends CrudRepository<Token, Long>{
     Token findByAccessTokenAndVendor(String accessToken, String vendor);
 
     void deleteById(Long id);
