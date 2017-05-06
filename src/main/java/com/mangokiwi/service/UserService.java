@@ -1,5 +1,6 @@
 package com.mangokiwi.service;
 
+import com.mangokiwi.core.annotation.HandleEntityNotFound;
 import com.mangokiwi.model.User;
 import com.mangokiwi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,17 +18,15 @@ public class UserService  {
     @Autowired
     private UserRepository userRepository;
 
-    public User findByUserName(String name){
+    @HandleEntityNotFound
+    public User getUserDetailByName(String name){
         User result = userRepository.findByUsername(name);
-        if(result == null)
-            throw new EntityNotFoundException(" user can not be found");
         return result;
     }
 
-    public User findById(Long id){
+    @HandleEntityNotFound
+    public User getUserDetailById(Long id){
         User result = userRepository.findById(id);
-        if(result == null)
-            throw new EntityNotFoundException(" user can not be found");
         return result;
     }
 
@@ -42,7 +41,7 @@ public class UserService  {
         return userRepository.save(user);
     }
 
-    public void deleteById(Long id){
+    public void deleteUserById(Long id){
         userRepository.deleteById(id);
     }
 

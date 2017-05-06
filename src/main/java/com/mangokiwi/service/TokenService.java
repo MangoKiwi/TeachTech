@@ -1,5 +1,6 @@
 package com.mangokiwi.service;
 
+import com.mangokiwi.core.annotation.HandleEntityNotFound;
 import com.mangokiwi.model.Token;
 import com.mangokiwi.repository.TokenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,24 +19,20 @@ public class TokenService {
     @Autowired
     private TokenRepository tokenRepository;
 
-    public Token findByAccessTokenAndVendor(String accessToken, String vendor){
+    @HandleEntityNotFound
+    public Token getTokenByAccessTokenAndVendor(String accessToken, String vendor){
         Token token = tokenRepository.findByAccessTokenAndVendor(accessToken, vendor);
-        if(token == null)
-            throw new EntityNotFoundException(" Token can not be found");
         return token;
     }
 
-    public Token findById(Long id){
+    @HandleEntityNotFound
+    public Token getTokenById(Long id){
         Token token =  tokenRepository.findById(id);
-        if(id == null)
-            throw new EntityNotFoundException(" Token can not be found");
         return token;
     }
-
-    public Token findByUserId(Long userId){
+    @HandleEntityNotFound
+    public Token getTokenByUserId(Long userId){
         Long id = tokenRepository.findByUserId(userId);
-        if(id == null)
-            throw new EntityNotFoundException(" Token can not be found");
         return tokenRepository.findById(id);
     }
 
@@ -49,7 +46,7 @@ public class TokenService {
         return tokenRepository.save(token);
     }
 
-    public void deleteById(Long id){
+    public void deleteTokenById(Long id){
         tokenRepository.deleteById(id);
     }
 

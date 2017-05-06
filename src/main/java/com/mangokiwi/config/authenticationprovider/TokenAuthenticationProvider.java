@@ -38,7 +38,7 @@ public class TokenAuthenticationProvider implements AuthenticationProvider {
         }
         Token token = null;
         try {
-            token = tokenService.findByAccessTokenAndVendor(tokenVal.get(), vendorVal.get());
+            token = tokenService.getTokenByAccessTokenAndVendor(tokenVal.get(), vendorVal.get());
             if(tokenService.checkTokenExpired(token)){
                 throw new  BadCredentialsException("Token expired");
             }
