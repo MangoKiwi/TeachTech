@@ -32,7 +32,7 @@ public class FacebookAuth {
 		if(!info.isValid())
 			throw new BadCredentialsException("Invalid token");
 		try {
-			User user = userService.getUserDetailById(Long.parseLong(info.getUserId()));
+			User user = userService.getUserById(Long.parseLong(info.getUserId()));
 			token = tokenService.getTokenByUserId(user.getId());
 			token.setAccessToken(tokenVal);
 			token.setVendor("facebook");

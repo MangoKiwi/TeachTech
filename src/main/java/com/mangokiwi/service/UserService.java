@@ -19,13 +19,13 @@ public class UserService  {
     private UserRepository userRepository;
 
     @HandleEntityNotFound
-    public User getUserDetailByName(String name){
+    public User getUserByName(String name){
         User result = userRepository.findByUsername(name);
         return result;
     }
 
     @HandleEntityNotFound
-    public User getUserDetailById(Long id){
+    public User getUserById(Long id){
         User result = userRepository.findById(id);
         return result;
     }
