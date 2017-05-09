@@ -29,5 +29,7 @@ public abstract class BaseController {
 	public static final String UPDATE_INFO_URL = INFO_PATH + "/update";
 	public static final String FIND_TEACHER_URL = TEACHER_PATH + "/find";
 	public static final String UPDATE_TEACHER_URL = TEACHER_PATH + "/update";
+	public static final String UPLOAD_TEACHER_DEGREE_FILE = TEACHER_PATH + "/upload_degree_file";
+	public static final String UPLOAD_TEACHER_RESUME_FILE = TEACHER_PATH + "/upload_resume_file";
 	public static final String UPDATE_TAG_URL = TAG_PATH + "/update";
 }
