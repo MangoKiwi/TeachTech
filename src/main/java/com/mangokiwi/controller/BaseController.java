@@ -4,7 +4,7 @@ package com.mangokiwi.controller;
  * Created by tangmaolei on 5/8/17.
  */
 public abstract class BaseController {
-	private static final String BASE_PATH = "/TeachTeach/v1";
+	private static final String BASE_PATH = "/TeachTech/v1";
 	public static final String HEALTH_URL = BASE_PATH + "/health";
 
 	/*============================================================================
