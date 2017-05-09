@@ -13,11 +13,11 @@ public class Comment {
 	private Long id;
 
 	@OneToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "student_id")
 	private User student;
 
 	@OneToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "teacher_id")
 	private User teacher;
 
 	private String comment;
