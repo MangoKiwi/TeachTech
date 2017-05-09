@@ -30,7 +30,7 @@ public class User {
 
     private String degree;
 
-    private boolean isTeacher;
+    private TeacherStatus isTeacher;
 
     public User(){}
 
@@ -39,7 +39,7 @@ public class User {
         this.username = username;
     }
 
-    public User(Long id, String username, String firstName, String lastName, Gender gender, Date birthDate, String province, String city, String district, String degree, boolean isTeacher) {
+    public User(Long id, String username, String firstName, String lastName, Gender gender, Date birthDate, String province, String city, String district, String degree, TeacherStatus isTeacher) {
         this.id = id;
         this.username = username;
         this.firstName = firstName;
@@ -133,11 +133,11 @@ public class User {
         this.degree = degree;
     }
 
-    public boolean isTeacher() {
+    public TeacherStatus isTeacher() {
         return isTeacher;
     }
 
-    public void setTeacher(boolean teacher) {
-        isTeacher = teacher;
+    public void setTeacher(TeacherStatus isTeacher) {
+        isTeacher = isTeacher;
     }
 }
