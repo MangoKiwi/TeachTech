@@ -25,6 +25,9 @@ public class Teacher {
 
 //	TODO: available time
 
+
+	public Teacher(){};
+
 	public Teacher(User user, Double rating, Integer count, String diploma, String resume) {
 		this.user = user;
 		this.rating = rating;

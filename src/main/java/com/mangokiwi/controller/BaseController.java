@@ -29,48 +29,69 @@ public abstract class BaseController {
 	public static final String UPDATE_INFO_URL = INFO_PATH + "/update";
 	public static final String FIND_TEACHER_URL = TEACHER_PATH + "/retrieve";
 	/*==============================================================================
-
+	get teacher info:
 	url: /TeachTech/v1/user/teacher/retrieve
-	method: GET			//get teacher info
-
+	method: GET
 	response format:
-		content
+		content:
 		{
-			"username": "TML"
-			"lastName": "Tang",
-			"firstName": "Maolei",
-			"gender": "male",
-			"birthDate": "1992-12-31 12:00:00"
-			"province": "beijing",
-			"city": "beijing",
-			"district": "xicheng",
-			"degree": "bachelor",
-			"isTeacher": NO   //TODO: double check how to represent ENUM in JSON
+			"id": 1,
+			"user":
+			{
+				"id": 103981930177025,
+				"username": "TML",
+				"firstName": maolei,
+				"lastName": tang,
+				"gender": male,
+				"birthDate": "1992-12-31 12:00:00",
+				"province": beijing,
+				"city": beijing,
+				"district": xicheng,
+				"degree": bachelor
+		  	},
+			"rating": 4.2,
+			"count": 0,
+			"diploma": "/Document/diploma",
+			"resume": "/Document/resume"
 		}
 	==============================================================================*/
-	public static final String UPDATE_TEACHER_URL = TEACHER_PATH + "/update";
+//	public static final String UPDATE_TEACHER_URL = TEACHER_PATH + "/update";
 	/*==============================================================================
-
+	update teacher info:
 	url: /TeachTech/v1/user/teacher/update
-	method: PUT			//update teacher info
-
+	method: PUT
 	request format:
-		header:
+		content:
 		{
-			"Auth-Token": "fdsafdagsa",
-			"Auth-Vendor": "facebook"
-		}
-		content
-		{
-			"lastName": "Tang",
-			"firstName": "Maolei",
-			"province": "beijing",
-			"city": "beijing",
 			"district": "xicheng",
 			"degree": "bachelor"
 		}
 	==============================================================================*/
-	public static final String UPLOAD_TEACHER_DEGREE_FILE = TEACHER_PATH + "/upload_degree_file";
+	public static final String UPLOAD_TEACHER_DIPLOMA_FILE = TEACHER_PATH + "/upload_diploma_file";
+	/*==============================================================================
+	upload teacher diploma file:
+	url: /TeachTech/v1/user/teacher/upload_diploma_file
+	method: PUT
+	request format:
+		content:
+		{
+			"diploma": diploma.pdf
+		}
+	response format:
+		String (file name)
+	==============================================================================*/
 	public static final String UPLOAD_TEACHER_RESUME_FILE = TEACHER_PATH + "/upload_resume_file";
+	/*==============================================================================
+	upload teacher resume file:
+	url: /TeachTech/v1/user/teacher/upload_resume_file
+	method: PUT
+	request format:
+		content:
+		{
+			"resume": resume.pdf
+		}
+	response format:
+		String (file name)
+	==============================================================================*/
 	public static final String UPDATE_TAG_URL = TAG_PATH + "/update";
 }

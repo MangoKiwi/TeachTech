@@ -23,7 +23,8 @@ public class TeacherService {
 	private UserService userService;
 
 	@HandleEntityNotFound
-	public Teacher getTeacherByUserId(Long id){
+	public Teacher getTeacherByUserId(Long userId){
+		Long id = teacherRepository.findByUserId(userId);
 		Teacher teacher = teacherRepository.findById(id);
 		return teacher;
 	}

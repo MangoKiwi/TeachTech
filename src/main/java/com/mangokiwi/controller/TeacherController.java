@@ -24,10 +24,15 @@ public class TeacherController extends BaseController {
 		return teacherService.getTeacherByAccessTokenAndVendor(accessToken, vendor);
 	}
 
-	@RequestMapping(value = UPDATE_TEACHER_URL, method = RequestMethod.PUT)
-	public Teacher updateTeacher(@RequestHeader("Auth-Token") String accessToken,
-								 @RequestHeader("Auth-Vendor") String vendor,
-								 @RequestBody Map<String, Object> payload) {
-		return null;
+	@RequestMapping(value = UPLOAD_TEACHER_DIPLOMA_FILE, method = RequestMethod.PUT)
+	public String uploadDiploma(@RequestHeader("Auth-Token") String accessToken,
+								 @RequestHeader("Auth-Vendor") String vendor) {
+		return "fake diploma name";
+	}
+
+	@RequestMapping(value = UPLOAD_TEACHER_RESUME_FILE, method = RequestMethod.PUT)
+	public String updateResume(@RequestHeader("Auth-Token") String accessToken,
+								 @RequestHeader("Auth-Vendor") String vendor) {
+		return "fake resume name";
 	}
 }
