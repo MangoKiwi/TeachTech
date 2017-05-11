@@ -18,7 +18,7 @@ public interface TokenRepository extends CrudRepository<Token, Long>{
     Token findById(Long id);
 
     @Query("SELECT id from Token WHERE user_id = :userId")
-    Long findByUserId(@Param("userId") Long id);
+    Long findTokenIdByUserId(@Param("userId") Long id);
 
     @Query("UPDATE Token SET accessToken = :accessToken WHERE id = :id")
     int updateAccessTokenById(@Param("id") Long id, @Param("accessToken") String accessToken);

@@ -6,7 +6,6 @@ import com.mangokiwi.repository.TokenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.Date;
 
 
@@ -32,7 +31,7 @@ public class TokenService {
     }
     @HandleEntityNotFound
     public Token getTokenByUserId(Long userId){
-        Long id = tokenRepository.findByUserId(userId);
+        Long id = tokenRepository.findTokenIdByUserId(userId);
         return tokenRepository.findById(id);
     }
 
