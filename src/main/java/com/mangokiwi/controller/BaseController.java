@@ -20,31 +20,31 @@ public abstract class BaseController {
 		    	"id":1,
 		    	"student":
 		    	{
-		    		"id": 103981930177025,
-					"username": "TML",
-					"firstName": "maolei",
-					"lastName": "tang",
-					"gender": "male",
-					"birthDate": "1992-12-31 12:00:00",
-					"province": "beijing",
-					"city": "beijing",
-					"district": "xicheng",
-					"degree": "bachelor"
-					"isTeacher" : "yes"
+                    "id": 103981930177025,
+                    "username": "TML",
+                    "firstName": "maolei",
+                    "lastName": "tang",
+                    "gender": "male",
+                    "birthDate": "1992-12-31 12:00:00",
+                    "province": "beijing",
+                    "city": "beijing",
+                    "district": "xicheng",
+                    "degree": "bachelor"
+                    "isTeacher" : "yes"
 		    	},
 		    	"teacher":
 		    	{
-		    		"id": 103981930177025,
-					"username": "TML",
-					"firstName": "maolei",
-					"lastName": "tang",
-					"gender": "male",
-					"birthDate": "1992-12-31 12:00:00",
-					"province": "beijing",
-					"city": "beijing",
-					"district": "xicheng",
-					"degree": "bachelor"
-					"isTeacher" : "yes"
+                    "id": 103981930177025,
+                    "username": "TML",
+                    "firstName": "maolei",
+                    "lastName": "tang",
+                    "gender": "male",
+                    "birthDate": "1992-12-31 12:00:00",
+                    "province": "beijing",
+                    "city": "beijing",
+                    "district": "xicheng",
+                    "degree": "bachelor"
+                    "isTeacher" : "yes"
 		    	},
 		    	"rating":5,
 		    	"status":"finished",
@@ -171,24 +171,24 @@ public abstract class BaseController {
 		/*
 			example user unit response
 		    {
-		    	"id": 103981930177025,
-				"username": "ZF",
-				"firstName": "Zhen",
-				"lastName": "Feng",
-				"gender": "male",
-				"birthDate": "1993-4-21 12:00:00",
-				"province": "beijing",
-				"city": "beijing",
-				"district": "xicheng",
-				"degree": "bachelor"
-				"isTeacher" : "yes"
+                "id": 103981930177025,
+                "username": "ZF",
+                "firstName": "Zhen",
+                "lastName": "Feng",
+                "gender": "male",
+                "birthDate": "1993-4-21 12:00:00",
+                "province": "beijing",
+                "city": "beijing",
+                "district": "xicheng",
+                "degree": "bachelor"
+                "isTeacher" : "yes"
 		    }
 
 		    example tag unit response
 		    {
-		    	"id": 1
-		    	"user_id": 103981930177025
-		    	"tag" : "computer science"
+                "id": 1
+                "user_id": 103981930177025
+                "tag" : "computer science"
 		    }
 		    -----------------------------------------------------------------
 			** Get all users **
