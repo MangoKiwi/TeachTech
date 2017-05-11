@@ -40,4 +40,8 @@ public class TeacherService {
 		User user = userService.getUserByAccessTokenAndVendor(accessToken, vendor);
 		return getTeacherByUser(user);
 	}
+
+	public Teacher update(Teacher teacher) {
+		return teacherRepository.save(teacher);
+	}
 }
