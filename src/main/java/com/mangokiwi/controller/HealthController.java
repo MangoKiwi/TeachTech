@@ -9,11 +9,12 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-public class HealthController extends BaseController {
+public class HealthController {
 
-    @RequestMapping(value = HEALTH_URL, method = RequestMethod.GET)
+    @RequestMapping(value = {"/health", "/"}, method = RequestMethod.GET)
     public String healthCheck(){
         return "Connection is good";
     }
+
 
 }
