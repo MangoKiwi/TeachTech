@@ -14,42 +14,42 @@ public abstract class BaseController {
 	 ============================================================================*/
 	public static final String APPOINTMENT_PATH = BASE_PATH + "/appointments";
 		/*
-		    example unit response format:
+			example unit response format:
 
-		    {
-		    	"id":1,
-		    	"student":
-		    	{
-                    "id": 103981930177025,
-                    "username": "TML",
-                    "firstName": "maolei",
-                    "lastName": "tang",
-                    "gender": "male",
-                    "birthDate": "1992-12-31 12:00:00",
-                    "province": "beijing",
-                    "city": "beijing",
-                    "district": "xicheng",
-                    "degree": "bachelor"
-                    "isTeacher" : "yes"
-		    	},
-		    	"teacher":
-		    	{
-                    "id": 103981930177025,
-                    "username": "TML",
-                    "firstName": "maolei",
-                    "lastName": "tang",
-                    "gender": "male",
-                    "birthDate": "1992-12-31 12:00:00",
-                    "province": "beijing",
-                    "city": "beijing",
-                    "district": "xicheng",
-                    "degree": "bachelor"
-                    "isTeacher" : "yes"
-		    	},
-		    	"rating":5,
-		    	"status":"finished",
-		    	"date":"2017-05-11 11:05:00"
-		    }
+			{
+				"id":1,
+				"student":
+				{
+					"id": 103981930177025,
+					"username": "TML",
+					"firstName": "maolei",
+					"lastName": "tang",
+					"gender": "male",
+					"birthDate": "1992-12-31 12:00:00",
+					"province": "beijing",
+					"city": "beijing",
+					"district": "xicheng",
+					"degree": "bachelor"
+					"isTeacher" : "yes"
+				},
+				"teacher":
+				{
+					"id": 103981930177025,
+					"username": "TML",
+					"firstName": "maolei",
+					"lastName": "tang",
+					"gender": "male",
+					"birthDate": "1992-12-31 12:00:00",
+					"province": "beijing",
+					"city": "beijing",
+					"district": "xicheng",
+					"degree": "bachelor"
+					"isTeacher" : "yes"
+				},
+				"rating":5,
+				"status":"finished",
+				"date":"2017-05-11 11:05:00"
+			}
 
 			-----------------------------------------------------------------
 			** Get all appointments **
@@ -170,27 +170,27 @@ public abstract class BaseController {
 	public static final String USER_PROFILE_PATH = BASE_PATH + "/users";
 		/*
 			example user unit response
-		    {
-                "id": 103981930177025,
-                "username": "ZF",
-                "firstName": "Zhen",
-                "lastName": "Feng",
-                "gender": "male",
-                "birthDate": "1993-4-21 12:00:00",
-                "province": "beijing",
-                "city": "beijing",
-                "district": "xicheng",
-                "degree": "bachelor"
-                "isTeacher" : "yes"
-		    }
+			{
+				"id": 103981930177025,
+				"username": "ZF",
+				"firstName": "Zhen",
+				"lastName": "Feng",
+				"gender": "male",
+				"birthDate": "1993-4-21 12:00:00",
+				"province": "beijing",
+				"city": "beijing",
+				"district": "xicheng",
+				"degree": "bachelor"
+				"isTeacher" : "yes"
+			}
 
-		    example tag unit response
-		    {
-                "id": 1
-                "user_id": 103981930177025
-                "tag" : "computer science"
-		    }
-		    -----------------------------------------------------------------
+			example tag unit response
+			{
+				"id": 1
+				"user_id": 103981930177025
+				"tag" : "computer science"
+			}
+			-----------------------------------------------------------------
 			** Get all users **
 			url: /TeachTech/v1/users
 			method:get
@@ -225,7 +225,7 @@ public abstract class BaseController {
 				"district": "xicheng",
 				"degree": "bachelor"
 				"isTeacher" : "no"
-		    }
+			}
 			response format:
 				 user unit example response
 			-----------------------------------------------------------------
@@ -244,8 +244,8 @@ public abstract class BaseController {
 					"birthDate": "1993-4-21 12:00:00",
 					"province": "beijing",
 					"isTeacher" : "no"
-		    	}
-		    	means user only want to update this three info
+				}
+				means user only want to update this three info
 			-----------------------------------------------------------------
 			** Delete a user **
 			url: /TeachTech/v1/users/{id}
