@@ -3,12 +3,10 @@ package com.mangokiwi.service;
 import com.mangokiwi.core.annotation.HandleEntityNotFound;
 import com.mangokiwi.model.Token;
 import com.mangokiwi.model.User;
-import com.mangokiwi.repository.TokenRepository;
 import com.mangokiwi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
 
 /**
  * Created by zhenfeng on 4/27/17.
@@ -19,9 +17,6 @@ public class UserService  {
 
     @Autowired
     private UserRepository userRepository;
-
-    @Autowired
-    private TokenRepository tokenRepository;
 
     @Autowired
 	private TokenService tokenService;
@@ -38,15 +33,11 @@ public class UserService  {
         return result;
     }
 
-    @HandleEntityNotFound
-    public User getUserByToken(Token token){
-        return token.getUser();
-    }
 
     @HandleEntityNotFound
 	public User getUserByAccessTokenAndVendor(String accessToken, String vendor){
     	Token token = tokenService.getTokenByAccessTokenAndVendor(accessToken, vendor);
-    	return getUserByToken(token);
+    	return getUserById(token.getUserId());
 	}
 
 
