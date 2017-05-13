@@ -1,5 +1,8 @@
 package com.mangokiwi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Fetch;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -12,13 +15,21 @@ public class Comment {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@OneToOne
+	@JsonIgnore
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "student_id")
 	private User student;
 
-	@OneToOne
+	@Column(name = "student_id", insertable = false, updatable = false)
+	private Long studentId;
+
+	@JsonIgnore
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "teacher_id")
 	private User teacher;
+
+	@Column(name = "teacher_id", insertable = false, updatable = false)
+	private Long teacherId;
 
 	private String comment;
 
@@ -53,6 +64,14 @@ public class Comment {
 
 	public void setTeacher(User teacher) {
 		this.teacher = teacher;
+	}
+
+	public Long getStudentId() {
+		return studentId;
+	}
+
+	public Long getTeacherId() {
+		return teacherId;
 	}
 
 	public String getComment() {

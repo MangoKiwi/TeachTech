@@ -17,7 +17,7 @@ public class User {
 
     private String lastName;
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private Gender gender;
 
     private Date birthDate;
@@ -30,7 +30,8 @@ public class User {
 
     private String degree;
 
-    private TeacherStatus isTeacher;
+    @Enumerated(EnumType.STRING)
+    private TeacherStatus teacherStatus;
 
     public User(){}
 
@@ -39,7 +40,7 @@ public class User {
         this.username = username;
     }
 
-    public User(Long id, String username, String firstName, String lastName, Gender gender, Date birthDate, String province, String city, String district, String degree, TeacherStatus isTeacher) {
+    public User(Long id, String username, String firstName, String lastName, Gender gender, Date birthDate, String province, String city, String district, String degree, TeacherStatus teacherStatus) {
         this.id = id;
         this.username = username;
         this.firstName = firstName;
@@ -50,7 +51,7 @@ public class User {
         this.city = city;
         this.district = district;
         this.degree = degree;
-        this.isTeacher = isTeacher;
+        this.teacherStatus = teacherStatus;
     }
 
     public Long getId() {
@@ -133,11 +134,11 @@ public class User {
         this.degree = degree;
     }
 
-    public TeacherStatus isTeacher() {
-        return isTeacher;
-    }
+	public TeacherStatus getTeacherStatus() {
+		return teacherStatus;
+	}
 
-    public void setTeacher(TeacherStatus isTeacher) {
-        isTeacher = isTeacher;
-    }
+	public void setTeacherStatus(TeacherStatus teacherStatus) {
+		this.teacherStatus = teacherStatus;
+	}
 }
