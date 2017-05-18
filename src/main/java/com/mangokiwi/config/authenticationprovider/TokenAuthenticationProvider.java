@@ -1,6 +1,7 @@
 package com.mangokiwi.config.authenticationprovider;
 
 import com.mangokiwi.config.APIClientUtil.Facebook.FacebookAuth;
+import com.mangokiwi.core.exception.EntityNotFoundException;
 import com.mangokiwi.core.exception.VendorNotFoundException;
 import com.mangokiwi.model.Token;
 import com.mangokiwi.service.TokenService;
@@ -12,7 +13,6 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationToken;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.Map;
 import java.util.Optional;
 

@@ -9,7 +9,7 @@ import javax.persistence.*;
  * Created by tangmaolei on 5/8/17.
  */
 @Entity
-public class Teacher {
+public class Teacher extends BaseModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

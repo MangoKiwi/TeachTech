@@ -34,7 +34,12 @@ public class AppointmentService {
 
     @HandleEntityNotFound
     public List<Appointment> getAppointmentsByTeacherId(Long teacherId){
-        return appointmentRepository.findByStudentId(teacherId);
+        return appointmentRepository.findByTeacherId(teacherId);
+    }
+
+    @HandleEntityNotFound
+    public List<Appointment> getAllAppointments(){
+        return appointmentRepository.findAll();
     }
 
     public Appointment update(Appointment appointment){

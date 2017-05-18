@@ -1,6 +1,7 @@
 package com.mangokiwi.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mangokiwi.controller.BaseController;
 import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
@@ -12,7 +13,7 @@ import java.util.Date;
 
 
 @Entity
-public class Appointment {
+public class Appointment extends BaseModel{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

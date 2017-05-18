@@ -18,34 +18,8 @@ public abstract class BaseController {
 
 			{
 				"id":1,
-				"student":
-				{
-					"id": 103981930177025,
-					"username": "TML",
-					"firstName": "maolei",
-					"lastName": "tang",
-					"gender": "male",
-					"birthDate": "1992-12-31 12:00:00",
-					"province": "beijing",
-					"city": "beijing",
-					"district": "xicheng",
-					"degree": "bachelor"
-					"isTeacher" : "yes"
-				},
-				"teacher":
-				{
-					"id": 103981930177025,
-					"username": "TML",
-					"firstName": "maolei",
-					"lastName": "tang",
-					"gender": "male",
-					"birthDate": "1992-12-31 12:00:00",
-					"province": "beijing",
-					"city": "beijing",
-					"district": "xicheng",
-					"degree": "bachelor"
-					"isTeacher" : "yes"
-				},
+				"studentId": 12345678,
+				"teacherId": 12345678
 				"rating":5,
 				"status":"finished",
 				"date":"2017-05-11 11:05:00"
@@ -67,31 +41,25 @@ public abstract class BaseController {
 			** Get all appointments for a student **
 			url: /TeachTech/v1/appointments
 			method:get
-			request body format :
-			{
-				"student_id":103981930177025
-			}
+			query parameters:
+				student_id
 			response format:
 				list of unit example response
 			-----------------------------------------------------------------
 			** Get all appointments for a teacher **
 			url: /TeachTech/v1/appointments
 			method:get
-			request body format :
-			{
-				"teacher_id":123456789123456
-			}
+			query parameters:
+				teacher_id
 			response format:
 				list of unit example response
 			-----------------------------------------------------------------
 			** Get all appointment for a student and a teacher **
 			url: /TeachTech/v1/appointments
 			method:get
-			request body format :
-			{
-				"student_id":103981930177025,
-				"teacher_id":123456789123456
-			}
+			query parameters:
+				teacher_id
+				student_id
 			response format:
 				list of unit example response
 			-----------------------------------------------------------------
@@ -109,7 +77,7 @@ public abstract class BaseController {
 				unit example response
 			-----------------------------------------------------------------
 			** Update a new appointment**
-			url: /TeachTech/v1/appointments
+			url: /TeachTech/v1/appointments/{id}
 			method:put
 			request body format :
 			{

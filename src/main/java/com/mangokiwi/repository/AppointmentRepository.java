@@ -17,6 +17,8 @@ public interface AppointmentRepository extends CrudRepository<Appointment,Long> 
 
     Appointment findById(Long id);
 
+    List<Appointment> findAll();
+
     @Query("SELECT '*' FROM Appointment WHERE student_id = :student_id AND teacher_id = :teacher_id")
     List<Appointment> findByStudentIdAndTeacherId(@Param("student_id") Long studentId,
                                                   @Param("teacher_id") Long teacherId);

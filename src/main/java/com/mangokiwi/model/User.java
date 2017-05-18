@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-public class User {
+public class User extends BaseModel {
 
     @Id
     private Long id;
