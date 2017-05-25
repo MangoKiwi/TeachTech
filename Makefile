@@ -9,3 +9,8 @@ clean:
 .PHONY: test
 test: clean
 	mvn test
+
+.PHONY: run
+run: clean
+	mvn package	
+	mvn spring-boot:run

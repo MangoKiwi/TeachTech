@@ -226,9 +226,25 @@ public abstract class BaseController {
 		Teacher
 	 ============================================================================*/
 	public static final String TEACHER_PROFILE_PATH = BASE_PATH + "/teachers";
-	/*============================================================================
-		Comments
-	 ============================================================================*/
+		/*
+			example teacher unit response
+			{
+				"rating": 3.5,
+				"count": 2,
+				"diploma": "diploma name",
+				"resume": "resume_name"
+			}
+			-----------------------------------------------------------------
+			** Get a teacher with id**
+			url: /TeachTech/v1/teachers/id
+			method:get
+			response format:
+				teacher unit example response
+			-----------------------------------------------------------------
+
+/*============================================================================
+    Comments
+ ============================================================================*/
 	public static final String COMMENT_PATH = BASE_PATH + "/comments";
 
 
