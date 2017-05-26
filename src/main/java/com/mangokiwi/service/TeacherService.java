@@ -23,6 +23,11 @@ public class TeacherService {
 	private UserService userService;
 
 	@HandleEntityNotFound
+	public void validateTeacherByUserId(Long userId){
+		getTeacherByUserId(userId);
+	}
+
+	@HandleEntityNotFound
 	public Teacher getTeacherByUserId(Long userId){
 		Long id = teacherRepository.findByUserId(userId);
 		Teacher teacher = teacherRepository.findById(id);
@@ -41,7 +46,30 @@ public class TeacherService {
 		return getTeacherByUser(user);
 	}
 
+	@HandleEntityNotFound
+	public Teacher addTeacherByUserId(Long userId){
+		User user = userService.getUserById(userId);
+		Teacher teacher = new Teacher(user);
+		return teacherRepository.save(teacher);
+	}
+
 	public Teacher update(Teacher teacher) {
+		return teacherRepository.save(teacher);
+	}
+
+//	dont need to deal with wrong file type
+	public Teacher update(Teacher teacher, String fileType, String filename) {
+		if (fileType.equals("resume"))
+			teacher.setResume(filename);
+		else
+			teacher.setDiploma(filename);
+		return teacherRepository.save(teacher);
+	}
+
+	public Teacher incrCount(Teacher teacher) {
+		int count = teacher.getCount();
+		count++;
+		teacher.setCount(count);
 		return teacherRepository.save(teacher);
 	}
 }

@@ -1,6 +1,7 @@
 package com.mangokiwi.service;
 
 import com.mangokiwi.core.annotation.HandleEntityNotFound;
+import com.mangokiwi.core.exception.EntityNotFoundException;
 import com.mangokiwi.model.Token;
 import com.mangokiwi.model.User;
 import com.mangokiwi.repository.UserRepository;
@@ -20,6 +21,11 @@ public class UserService  {
 
     @Autowired
 	private TokenService tokenService;
+
+    @HandleEntityNotFound
+    public void validateUserById(Long id){
+        userRepository.findById(id);
+    }
 
     @HandleEntityNotFound
     public User getUserByName(String name){

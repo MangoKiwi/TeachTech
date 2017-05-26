@@ -16,6 +16,4 @@ public interface TeacherRepository extends CrudRepository<Teacher, Long> {
 
 	@Query("SELECT id FROM Teacher WHERE user_id = :userId")
 	Long findByUserId(@Param("userId") Long id);
-
-
 }

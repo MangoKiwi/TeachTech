@@ -3,6 +3,7 @@ package com.mangokiwi.controller;
 import com.mangokiwi.core.exception.StorageFileNotFoundException;
 import com.mangokiwi.model.Teacher;
 import com.mangokiwi.service.TeacherService;
+import com.mangokiwi.service.UserService;
 import com.mangokiwi.service.storage.FileSystemStorageService;
 import org.apache.tomcat.util.http.fileupload.FileUploadBase;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ public class TeacherController extends BaseController {
 	private TeacherService teacherService;
 
 	@Autowired
+    private UserService userService;
+
+	@Autowired
     private FileSystemStorageService fileSystemStorageService;
 
     //TODO: TEST
@@ -28,21 +32,19 @@ public class TeacherController extends BaseController {
         return teacherService.getTeacherByUserId(id);
     }
 
-//    @RequestMapping(value = TEACHER_PROFILE_PATH + "/{id}", method = RequestMethod.POST)
-//    public Teacher postTeacherWithId(@PathVariable Long id,
-//                                     @RequestBody Teacher teacher){
-//
-//    }
+    @RequestMapping(value = TEACHER_PROFILE_PATH + "/{id}", method = RequestMethod.POST)
+    public Teacher postTeacherWithId(@PathVariable Long id) {
+        return teacherService.addTeacherByUserId(id);
+    }
 
+    //TODO: TEST
     @RequestMapping(value = TEACHER_PROFILE_PATH + "/{id}/files", method = RequestMethod.POST)
-    public ResponseEntity handleFileUpload(@PathVariable Long id,
+    public Teacher handleFileUpload(@PathVariable Long id,
                                            @RequestParam("file") MultipartFile file,
                                            @RequestParam("type") String fileType) {
-        //TODO: validate id
+        Teacher teacher = teacherService.getTeacherByUserId(id);
         fileSystemStorageService.store(file, id, fileType);
-        return ResponseEntity
-                .accepted()
-                .body("upload successfully");
+        return teacherService.update(teacher, fileType, file.getOriginalFilename());
     }
 
     @ExceptionHandler(StorageFileNotFoundException.class)
