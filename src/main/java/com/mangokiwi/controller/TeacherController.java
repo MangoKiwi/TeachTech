@@ -4,13 +4,12 @@ import com.mangokiwi.core.exception.StorageFileNotFoundException;
 import com.mangokiwi.model.Teacher;
 import com.mangokiwi.service.TeacherService;
 import com.mangokiwi.service.storage.FileSystemStorageService;
+import org.apache.tomcat.util.http.fileupload.FileUploadBase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by tangmaolei on 5/9/17.
@@ -39,9 +38,8 @@ public class TeacherController extends BaseController {
     public ResponseEntity handleFileUpload(@PathVariable Long id,
                                            @RequestParam("file") MultipartFile file,
                                            @RequestParam("type") String fileType) {
+        //TODO: validate id
         fileSystemStorageService.store(file, id, fileType);
-//        HashMap<String, String> responseJson = new HashMap<>();
-//        responseJson.put("response", "upload successfully");
         return ResponseEntity
                 .accepted()
                 .body("upload successfully");
@@ -51,6 +49,13 @@ public class TeacherController extends BaseController {
     public ResponseEntity handleStorageFileNotFound(StorageFileNotFoundException e) {
         return ResponseEntity
                 .notFound()
+                .build();
+    }
+
+    @ExceptionHandler(FileUploadBase.FileSizeLimitExceededException.class)
+    public ResponseEntity handleFileSizeLimitExceeded(FileUploadBase.FileSizeLimitExceededException e) {
+        return ResponseEntity
+                .badRequest()
                 .build();
     }
 
