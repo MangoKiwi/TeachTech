@@ -27,7 +27,6 @@ public class TeacherController extends BaseController {
 	@Autowired
     private FileSystemStorageService fileSystemStorageService;
 
-    //TODO: TEST
     @RequestMapping(value = TEACHER_PROFILE_PATH + "/{id}", method = RequestMethod.GET)
     public Teacher getTeacherWithId(@PathVariable Long id){
         return teacherService.getTeacherByUserId(id);
@@ -38,13 +37,14 @@ public class TeacherController extends BaseController {
         return teacherService.addTeacherByUserId(id);
     }
 
-    //TODO: TEST
     @RequestMapping(value = TEACHER_PROFILE_PATH + "/{id}/files", method = RequestMethod.POST)
-    public Teacher handleFileUpload(@PathVariable Long id,
-                                           @RequestParam("file") MultipartFile file,
-                                           @RequestParam("type") String fileType) {
+    public Teacher uploadFile(@PathVariable Long id,
+                              @RequestParam("file") MultipartFile file,
+                              @RequestParam("type") String fileType) {
         Teacher teacher = teacherService.getTeacherByUserId(id);
         fileSystemStorageService.store(file, id, fileType);
+//        TODO: think about the association with change teacher status
+//        change teacher status to "pending" as long as the file is upload
         userService.updateTeacherStatus(id, TeacherStatus.PENDING);
         return teacherService.update(teacher, fileType, file.getOriginalFilename());
     }
