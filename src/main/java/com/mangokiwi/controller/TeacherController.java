@@ -2,6 +2,7 @@ package com.mangokiwi.controller;
 
 import com.mangokiwi.core.exception.StorageFileNotFoundException;
 import com.mangokiwi.model.Teacher;
+import com.mangokiwi.model.TeacherStatus;
 import com.mangokiwi.service.TeacherService;
 import com.mangokiwi.service.UserService;
 import com.mangokiwi.service.storage.FileSystemStorageService;
@@ -44,6 +45,7 @@ public class TeacherController extends BaseController {
                                            @RequestParam("type") String fileType) {
         Teacher teacher = teacherService.getTeacherByUserId(id);
         fileSystemStorageService.store(file, id, fileType);
+        userService.updateTeacherStatus(id, TeacherStatus.PENDING);
         return teacherService.update(teacher, fileType, file.getOriginalFilename());
     }
 

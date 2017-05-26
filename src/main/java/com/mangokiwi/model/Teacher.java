@@ -37,6 +37,7 @@ public class Teacher extends BaseModel {
 
 	public Teacher(User user){
 		this.user = user;
+		this.userId = user.getId();
 		this.rating = 0.0;
 		this.count = 0;
 		diploma = null;

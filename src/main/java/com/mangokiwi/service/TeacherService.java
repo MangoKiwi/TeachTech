@@ -1,6 +1,8 @@
 package com.mangokiwi.service;
 
 import com.mangokiwi.core.annotation.HandleEntityNotFound;
+import com.mangokiwi.core.annotation.HandleTeacherAlreadyExist;
+import com.mangokiwi.core.exception.EntityNotFoundException;
 import com.mangokiwi.model.Teacher;
 import com.mangokiwi.model.User;
 import com.mangokiwi.repository.TeacherRepository;
@@ -22,9 +24,10 @@ public class TeacherService {
 	@Autowired
 	private UserService userService;
 
-	@HandleEntityNotFound
-	public void validateTeacherByUserId(Long userId){
-		getTeacherByUserId(userId);
+	public Teacher validateTeacherByUserId(Long userId){
+		Long id = teacherRepository.findByUserId(userId);
+		Teacher teacher = teacherRepository.findById(id);
+		return teacher;
 	}
 
 	@HandleEntityNotFound
@@ -46,7 +49,8 @@ public class TeacherService {
 		return getTeacherByUser(user);
 	}
 
-	@HandleEntityNotFound
+//	TODO: check if already be a teacher
+//	@HandleTeacherAlreadyExist
 	public Teacher addTeacherByUserId(Long userId){
 		User user = userService.getUserById(userId);
 		Teacher teacher = new Teacher(user);

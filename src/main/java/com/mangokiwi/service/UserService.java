@@ -2,6 +2,7 @@ package com.mangokiwi.service;
 
 import com.mangokiwi.core.annotation.HandleEntityNotFound;
 import com.mangokiwi.core.exception.EntityNotFoundException;
+import com.mangokiwi.model.TeacherStatus;
 import com.mangokiwi.model.Token;
 import com.mangokiwi.model.User;
 import com.mangokiwi.repository.UserRepository;
@@ -39,13 +40,17 @@ public class UserService  {
         return result;
     }
 
-
     @HandleEntityNotFound
 	public User getUserByAccessTokenAndVendor(String accessToken, String vendor){
     	Token token = tokenService.getTokenByAccessTokenAndVendor(accessToken, vendor);
     	return getUserById(token.getUserId());
 	}
 
+	public void updateTeacherStatus(Long id, TeacherStatus status){
+	    User user = getUserById(id);
+	    user.setTeacherStatus(status);
+	    userRepository.save(user);
+    }
 
     // when using update , user's id must not be null and exist in database
     public User update(User user){
