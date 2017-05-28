@@ -15,25 +15,21 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class TeacherService {
-	@Autowired
-	private TeacherRepository teacherRepository;
 
 	@Autowired
-	private UserRepository userRepository;
+	private TeacherRepository teacherRepository;
 
 	@Autowired
 	private UserService userService;
 
 	public Teacher validateTeacherByUserId(Long userId){
-		Long id = teacherRepository.findByUserId(userId);
-		Teacher teacher = teacherRepository.findById(id);
+		Teacher teacher = teacherRepository.findById(userId);
 		return teacher;
 	}
 
 	@HandleEntityNotFound
 	public Teacher getTeacherByUserId(Long userId){
-		Long id = teacherRepository.findByUserId(userId);
-		Teacher teacher = teacherRepository.findById(id);
+		Teacher teacher = teacherRepository.findById(userId);
 		return teacher;
 	}
 

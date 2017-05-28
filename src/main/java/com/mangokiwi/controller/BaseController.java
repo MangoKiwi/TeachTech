@@ -229,8 +229,7 @@ public abstract class BaseController {
 		/*
 			example teacher unit response
 			{
-				"id": 12,
-				"userId": 1234567,
+				"id": 123456789,
 				"rating": 3.5,
 				"count": 2,
 				"diploma": "diploma name",

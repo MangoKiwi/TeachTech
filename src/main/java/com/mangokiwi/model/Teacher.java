@@ -11,16 +11,13 @@ import javax.persistence.*;
 @Entity
 public class Teacher extends BaseModel {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "user_id", insertable = false, updatable = false)
 	private Long id;
 
 	@JsonIgnore
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
 	private User user;
-
-	@Column(name = "user_id", insertable = false, updatable = false)
-	private Long userId;
 
 	private Double rating;
 
@@ -37,7 +34,7 @@ public class Teacher extends BaseModel {
 
 	public Teacher(User user){
 		this.user = user;
-		this.userId = user.getId();
+		this.id = user.getId();
 		this.rating = 0.0;
 		this.count = 0;
 		diploma = null;
@@ -52,14 +49,6 @@ public class Teacher extends BaseModel {
 		this.resume = resume;
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 	public User getUser() {
 		return user;
 	}
@@ -68,8 +57,8 @@ public class Teacher extends BaseModel {
 		this.user = user;
 	}
 
-	public Long getUserId() {
-		return userId;
+	public Long getId() {
+		return id;
 	}
 
 	public Double getRating() {
