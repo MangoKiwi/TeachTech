@@ -12,10 +12,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface TeacherRepository extends CrudRepository<Teacher, Long> {
+
 	Teacher findById(Long id);
-
-	@Query("SELECT id FROM Teacher WHERE user_id = :userId")
-	Long findByUserId(@Param("userId") Long id);
-
 
 }

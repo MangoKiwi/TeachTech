@@ -226,9 +226,41 @@ public abstract class BaseController {
 		Teacher
 	 ============================================================================*/
 	public static final String TEACHER_PROFILE_PATH = BASE_PATH + "/teachers";
-	/*============================================================================
-		Comments
-	 ============================================================================*/
+		/*
+			example teacher unit response
+			{
+				"id": 123456789,
+				"rating": 3.5,
+				"count": 2,
+				"diploma": "diploma name",
+				"resume": "resume_name"
+			}
+			-----------------------------------------------------------------
+			** Get a teacher with id**
+			url: /TeachTech/v1/teachers/id
+			method:get
+			response format:
+				teacher unit example response
+			-----------------------------------------------------------------
+			** Post a teacher with id**
+			url: /TeachTech/v1/teachers/id
+			method:post
+			response format:
+				teacher unit example response
+			-----------------------------------------------------------------
+			** Post a file with id**
+			url: /TeachTech/v1/teachers/id/files
+			method:post
+			request:
+			{
+				"type": "resume",
+				"file": fakeFile.txt
+			}
+			response
+				teacher unit example response
+/*============================================================================
+    Comments
+ ============================================================================*/
 	public static final String COMMENT_PATH = BASE_PATH + "/comments";
 
 
@@ -239,36 +271,8 @@ public abstract class BaseController {
 //	public static final String INFO_PATH = USER_PROFILE_PATH + "/info";
 //	public static final String TEACHER_PATH = USER_PROFILE_PATH + "/teacher";
 //	public static final String TAG_PATH = USER_PROFILE_PATH + "/tag";
-//
-//	public static final String FILL_UP_INFO_URL = INFO_PATH + "/fill";
-//	public static final String UPDATE_INFO_URL = INFO_PATH + "/update";
-//	public static final String FIND_TEACHER_URL = TEACHER_PATH + "/retrieve";
 //	/*==============================================================================
-//	get teacher info:
-//	url: /TeachTech/v1/user/teacher/retrieve
-//	method: GET
-//	response format:
-//		content:
-//		{
-//			"id": 1,
-//			"user":
-//			{
-//				"id": 103981930177025,
-//				"username": "TML",
-//				"firstName": "maolei",
-//				"lastName": "tang",
-//				"gender": "male",
-//				"birthDate": "1992-12-31 12:00:00",
-//				"province": "beijing",
-//				"city": "beijing",
-//				"district": "xicheng",
-//				"degree": "bachelor"
-//		  	},
-//			"rating": 4.2,
-//			"count": 0,
-//			"diploma": "/Document/diploma",
-//			"resume": "/Document/resume"
-//		}
+
 //	==============================================================================*/
 ////	public static final String UPDATE_TEACHER_URL = TEACHER_PATH + "/update";
 //	/*==============================================================================
