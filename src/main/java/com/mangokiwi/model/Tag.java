@@ -9,7 +9,7 @@ import javax.persistence.*;
  */
 
 @Entity
-public class Tag {
+public class Tag extends BaseModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

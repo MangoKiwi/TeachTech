@@ -1,5 +1,6 @@
 package com.mangokiwi.config.APIClientUtil.Facebook;
 
+import com.mangokiwi.core.exception.EntityNotFoundException;
 import com.mangokiwi.model.Token;
 import com.mangokiwi.model.User;
 import com.mangokiwi.service.TokenService;
@@ -10,7 +11,7 @@ import com.restfb.Version;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Component;
-import javax.persistence.EntityNotFoundException;
+
 
 /**
  * Created by tangmaolei on 5/5/17.
@@ -43,6 +44,7 @@ public class FacebookAuth {
 			DefaultFacebookClient userFaceBookClient = new DefaultFacebookClient(tokenVal, Version.LATEST);
 			com.restfb.types.User fbUser = userFaceBookClient.fetchObject("me", com.restfb.types.User.class);
 			com.mangokiwi.model.User user = new User(Long.parseLong(info.getUserId()), fbUser.getName());
+			user.setFirstName(fbUser.getFirstName()); user.setLastName(fbUser.getLastName());
 			token = new Token(tokenVal, "facebook", user, info.getIssuedAt(),info.getExpiresAt());
 			userService.add(user);
 			tokenService.add(token);

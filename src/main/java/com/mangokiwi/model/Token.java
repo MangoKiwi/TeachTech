@@ -11,7 +11,7 @@ import java.util.Date;
  * Created by zhenfeng on 5/3/17.
  */
 @Entity
-public class Token {
+public class Token extends BaseModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

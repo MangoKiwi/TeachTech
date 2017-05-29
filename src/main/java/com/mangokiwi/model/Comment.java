@@ -10,7 +10,7 @@ import java.util.Date;
  * Created by tangmaolei on 5/8/17.
  */
 @Entity
-public class Comment {
+public class Comment extends BaseModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

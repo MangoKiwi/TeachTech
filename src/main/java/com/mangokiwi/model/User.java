@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-public class User {
+public class User extends BaseModel {
 
     @Id
     private Long id;
@@ -38,6 +38,7 @@ public class User {
     public User(Long id, String username) {
         this.id = id;
         this.username = username;
+        this.teacherStatus = TeacherStatus.NO;
     }
 
     public User(Long id, String username, String firstName, String lastName, Gender gender, Date birthDate, String province, String city, String district, String degree, TeacherStatus teacherStatus) {
